@@ -21,6 +21,9 @@ export class TodolistComponent {
 
     getTodos(): Promise<any> {
         return new Promise<any>((resolve, reject) => {
+            this.list = [new Todo('v1', 'https://www.youtube.com/watch?v=9Z3IgSbK8x8'),
+                         new Todo('v2', 'https://streamable.com/djjae'),
+                         new Todo('v3', 'https://www.youtube.com/watch?v=rX0F3kY3uxU')];
             resolve();
         });
     }
