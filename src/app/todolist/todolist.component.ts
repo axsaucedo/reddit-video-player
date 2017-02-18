@@ -14,11 +14,19 @@ export class TodolistComponent {
 
     constructor() {
         this.showCompleted = true;
-        this.todo = new Todo('Add me to list!', false);
-        this.list = [
-            new Todo('Its cool'),
-            new Todo('Hello', true)
-        ];
+        this.getTodos().then(() => {
+            this.autoPlay();
+        });
+    }
+
+    getTodos(): Promise<any> {
+        return new Promise<any>((resolve, reject) => {
+            resolve();
+        });
+    }
+
+    autoPlay() {
+        console.log('plaing');
     }
 
     addTodo() {
