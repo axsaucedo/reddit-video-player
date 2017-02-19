@@ -20,7 +20,7 @@
     "build": "gulp build",
     "serve-build": "gulp serve-build",
     "clean": "gulp clean",
-    "coverage": "coveralls < ./report/remap/lcov.info",
+    "coverage": "coveralls < ./report/remap/lcov.info"
   },
   "keywords": [
     "angular2",
