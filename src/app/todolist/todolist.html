@@ -1,29 +1,26 @@
 <div class="panel panel-default">
   <div class="panel-heading">
-    <h3 class="panel-title"><i class="fa fa-list"></i> To Do List &nbsp;<span class="badge">{{list.length}}</span></h3>
+    <h3 class="panel-title"><i class="fa fa-reddit"></i> Reddit videos &nbsp;<span class="badge">{{list.length}}</span></h3>
   </div>
   <div class="panel-body">
-    <div class="row">
-        <div class="col-md-12">
-            <div class="form-group">
-                <form (submit)="addTodo()" #todoForm="ngForm">
-                    <label for="todo">To Do</label>
-                    <span [hidden]="todo.name.valid" class="badge badge-warning">Required</span>
-                    <div class="form-inline">
-                        <input required [(ngModel)]="todo.name" id="todo" name="todoName" type="text" class="form-control" size="50">
-                        <button type="submit" class="btn btn-primary">Add</button>
-                    </div>
-                    <label><input type="checkbox" [(ngModel)]="showCompleted" name="todoCompleted"> show completed</label>
-                </form>
+    <div class="row" style="height: 70vh">
+        <div class="col-sm-9" style="height:100%">
+            <div class="row">
+                <div class="col-sm-6"><a style="font-size: 50px !important;" (click)=prevVideo() class="btn btn-danger"><i class="fa fa-arrow-left"></i></a></div>
+                <div class="col-sm-6"><a (click)=nextVideo() class="btn btn-danger" style="float: right ; font-size: 50px !important;"><i class="fa fa-arrow-right"></i></a></div>
+            </div>
+            <div class="container" class="col-xs-12" style="height:80%">
+                <div *ngIf="videoState.currVideo.url" style="height:100%">
+                    <h4>{{videoState.currVideo.name}}</h4>
+                    <iframe frameborder="0" [src]="videoState.currVideo.url | asCompletedFilter" width="100%" height="100%"></iframe>
+                    <h4><a [href]="videoState.currVideo.permaLink">View comments in reddit</a></h4>
+                </div>
             </div>
         </div>
-    </div>
-    <div class="row">
-        <div class="col-md-5">
-            <ul class="list-group">
-                <li *ngFor="let todo of (list | asCompletedFilter:showCompleted); let i=index" class="list-group-item">
-                <span title="Remove todo" class="badge" (click)="delTodo(i) ">x</span>
-                <label><input type="checkbox" [(ngModel)]="todo.done" name="todoDone"> {{todo.name}}</label>
+        <div class="col-sm-3">
+            <ul class="list-group col-sm-12" style="height: 100%; overflow-y: scroll">
+                <li *ngFor="let todo of (list); let i=index" class="list-group-item col-sm-12">
+                    <a class="btn col-sm-12" [ngClass]="getVideoBtnClass(i)" style="margin-bottom:4px;white-space: normal;" (click)="loadVideo(i)">{{todo.name}}</a>
                 </li>
             </ul>
         </div>

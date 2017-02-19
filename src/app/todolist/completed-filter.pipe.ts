@@ -1,17 +1,38 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { filter } from 'lodash';
+import { DomSanitizer } from '@angular/platform-browser';
 
 import { Todo } from './todo.model';
 
 @Pipe({
     name: 'asCompletedFilter'
 })
+// export class CompletedFilterPipe implements PipeTransform {
+//     transform(todos: Todo[], done): Todo[] {
+//         if (done) {
+//             return todos;
+//         }
+
+//         return filter(todos, {done});
+//     }
+// }
+
 export class CompletedFilterPipe implements PipeTransform {
-    transform(todos: Todo[], done): Todo[] {
-        if (done) {
-            return todos;
+    constructor(private sanitizer: DomSanitizer) {
+
+    }
+
+    transform(url) {
+        let lowerUrl = url.toLowerCase();
+        let xUrl = url;
+
+        if (lowerUrl.indexOf('youtube') !== -1) {
+            xUrl = xUrl.replace('watch?v=', 'v/') + '?autoplay=1';
+        } else if (lowerUrl.indexOf('streamable') !== -1) {
+            let urlParts = xUrl.split('/');
+            urlParts.splice(urlParts.length - 1, 0, 'e');
+            xUrl = urlParts.join('/') + '?autoplay=1';
         }
 
-        return filter(todos, {done});
+        return this.sanitizer.bypassSecurityTrustResourceUrl(xUrl);
     }
 }
