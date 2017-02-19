@@ -1,2 +1,7 @@
 node_modules
 .DS_Store
+build/
+npm-debug.log
+report/
+src/assets/styles/main.css
+src/tmp/
