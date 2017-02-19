@@ -21,7 +21,6 @@
     "serve-build": "gulp serve-build",
     "clean": "gulp clean",
     "coverage": "coveralls < ./report/remap/lcov.info",
-    "deploy": "gulp deploy"
   },
   "keywords": [
     "angular2",
