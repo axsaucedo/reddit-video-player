@@ -25,8 +25,13 @@ export class CompletedFilterPipe implements PipeTransform {
         let lowerUrl = url.toLowerCase();
         let xUrl = url;
 
+        console.log(xUrl);
+
         if (lowerUrl.indexOf('youtube') !== -1) {
             xUrl = xUrl.replace('watch?v=', 'v/') + '?autoplay=1';
+        } else if (lowerUrl.indexOf('youtu.be') !== -1) {
+            let urlParts = xUrl.split('/');
+            xUrl = 'https://youtube.com/v/' + urlParts[urlParts.length - 1] + '?autoplay=1';
         } else if (lowerUrl.indexOf('streamable') !== -1) {
             let urlParts = xUrl.split('/');
             urlParts.splice(urlParts.length - 1, 0, 'e');

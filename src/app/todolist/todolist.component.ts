@@ -1,18 +1,19 @@
 import { Component } from '@angular/core';
-
+import { VideosService } from './todo.service';
 import { Todo } from './todo.model';
 
 @Component({
     moduleId: module.id,
     selector: 'as-todolist',
-    templateUrl: 'todolist.html'
+    templateUrl: 'todolist.html',
+    providers: [VideosService]
 })
 export class TodolistComponent {
     public videoState;
     private list: Todo[];
     private showCompleted: Boolean;
 
-    constructor() {
+    constructor(private videosService: VideosService) {
         this.showCompleted = true;
         this.videoState = {
             currVidIndex: 0,
@@ -21,59 +22,16 @@ export class TodolistComponent {
         this.getVideos().then(() => {
             this.autoPlay();
         });
+        this.list = [];
     }
 
     getVideos(): Promise<any> {
         return new Promise<any>((resolve, reject) => {
-            this.list = [
-                        new Todo('This is the name of video 1',
-                            'https://www.youtube.com/watch?v=9Z3IgSbK8x8',
-                            'https://reddit.com/r/videos/comments/5uuuta/eric_andre_interviews_the_hot_babes_of_instagram/'),
-                        new Todo('Another video from streamable',
-                            'https://streamable.com/djjae',
-                            'https://reddit.com/r/videos/comments/5uw8xg/chatroulette_users_surprised_with_a_real_life_fps/'),
-                        new Todo('This last video is from youtube',
-                            'https://www.youtube.com/watch?v=rX0F3kY3uxU',
-                            'https://reddit.com/r/videos/comments/5uwudl/german_air_force_fighters_intercepting_a_plane/'),
-                        new Todo('This is the name of video 1',
-                            'https://www.youtube.com/watch?v=9Z3IgSbK8x8',
-                            'https://reddit.com/r/videos/comments/5uuuta/eric_andre_interviews_the_hot_babes_of_instagram/'),
-                        new Todo('Another video from streamable',
-                            'https://streamable.com/djjae',
-                            'https://reddit.com/r/videos/comments/5uw8xg/chatroulette_users_surprised_with_a_real_life_fps/'),
-                        new Todo('This last video is from youtube',
-                            'https://www.youtube.com/watch?v=rX0F3kY3uxU',
-                            'https://reddit.com/r/videos/comments/5uwudl/german_air_force_fighters_intercepting_a_plane/'),
-                        new Todo('This is the name of video 1',
-                            'https://www.youtube.com/watch?v=9Z3IgSbK8x8',
-                            'https://reddit.com/r/videos/comments/5uuuta/eric_andre_interviews_the_hot_babes_of_instagram/'),
-                        new Todo('Another video from streamable',
-                            'https://streamable.com/djjae',
-                            'https://reddit.com/r/videos/comments/5uw8xg/chatroulette_users_surprised_with_a_real_life_fps/'),
-                        new Todo('This last video is from youtube',
-                            'https://www.youtube.com/watch?v=rX0F3kY3uxU',
-                            'https://reddit.com/r/videos/comments/5uwudl/german_air_force_fighters_intercepting_a_plane/'),
-                        new Todo('This is the name of video 1',
-                            'https://www.youtube.com/watch?v=9Z3IgSbK8x8',
-                            'https://reddit.com/r/videos/comments/5uuuta/eric_andre_interviews_the_hot_babes_of_instagram/'),
-                        new Todo('Another video from streamable',
-                            'https://streamable.com/djjae',
-                            'https://reddit.com/r/videos/comments/5uw8xg/chatroulette_users_surprised_with_a_real_life_fps/'),
-                        new Todo('This last video is from youtube',
-                            'https://www.youtube.com/watch?v=rX0F3kY3uxU',
-                            'https://reddit.com/r/videos/comments/5uwudl/german_air_force_fighters_intercepting_a_plane/'),
-                        new Todo('This is the name of video 1',
-                            'https://www.youtube.com/watch?v=9Z3IgSbK8x8',
-                            'https://reddit.com/r/videos/comments/5uuuta/eric_andre_interviews_the_hot_babes_of_instagram/'),
-                        new Todo('Another video from streamable',
-                            'https://streamable.com/djjae',
-                            'https://reddit.com/r/videos/comments/5uw8xg/chatroulette_users_surprised_with_a_real_life_fps/'),
-                        new Todo('This last video is from youtube',
-                            'https://www.youtube.com/watch?v=rX0F3kY3uxU',
-                            'https://reddit.com/r/videos/comments/5uwudl/german_air_force_fighters_intercepting_a_plane/'),
-                    ];
-
-            setTimeout(() => { resolve(); }, 2000);
+            this.videosService.getAll()
+                .subscribe((videos: Todo[]) => {
+                    this.list = videos;
+                    resolve();
+                });
         });
     }
 
