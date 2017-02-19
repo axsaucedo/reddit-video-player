@@ -20,7 +20,8 @@
     "build": "gulp build",
     "serve-build": "gulp serve-build",
     "clean": "gulp clean",
-    "coverage": "coveralls < ./report/remap/lcov.info"
+    "coverage": "coveralls < ./report/remap/lcov.info",
+    "deploy": "gulp deploy"
   },
   "keywords": [
     "angular2",
@@ -97,6 +98,7 @@
   "devDependencies": {
     "browser-sync": "^2.18.6",
     "connect-history-api-fallback": "^1.3.0",
+    "gh-pages": "^0.12.0",
     "ts-node": "^2.0.0"
   }
 }
