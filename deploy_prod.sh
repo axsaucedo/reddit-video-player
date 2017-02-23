@@ -12,6 +12,7 @@ find build/assets -type f -name "*.js" -print0 | xargs -0 sed -i '' 's|home.html
 find build/assets -type f -name "*.js" -print0 | xargs -0 sed -i '' 's|navbar.html|/reddit-video-crawler/navbar.html|g' 
 find build/assets -type f -name "*.js" -print0 | xargs -0 sed -i '' 's|todolist.html|/reddit-video-crawler/todolist.html|g' 
 find build/assets -type f -name "*.js" -print0 | xargs -0 sed -i '' 's|app.html|/reddit-video-crawler/app.html|g' 
+find build/assets -type f -name "*.js" -print0 | xargs -0 sed -i '' 's|home.css|/reddit-video-crawler/home.css|g' 
 
 # Deploying to gh-pages
 git branch -D gh-pages
@@ -21,3 +22,5 @@ git commit -m "deploy to gh-pages"
 git push origin `git subtree split --prefix build`:gh-pages --force
 git checkout master
 git branch -D gh-pages
+
+
