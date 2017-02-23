@@ -39,7 +39,6 @@ export class TodolistComponent {
     }
 
     autoPlay() {
-        console.log('playing');
         this.videoState.currVideo = this.list[0];
         this.videoState.currVidIndex = 0;
     }

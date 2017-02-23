@@ -6,15 +6,6 @@ import { Todo } from './todo.model';
 @Pipe({
     name: 'asCompletedFilter'
 })
-// export class CompletedFilterPipe implements PipeTransform {
-//     transform(todos: Todo[], done): Todo[] {
-//         if (done) {
-//             return todos;
-//         }
-
-//         return filter(todos, {done});
-//     }
-// }
 
 export class CompletedFilterPipe implements PipeTransform {
     constructor(private sanitizer: DomSanitizer) {
@@ -24,8 +15,6 @@ export class CompletedFilterPipe implements PipeTransform {
     transform(url) {
         let lowerUrl = url.toLowerCase();
         let xUrl = url;
-
-        console.log(xUrl);
 
         if (lowerUrl.indexOf('youtube') !== -1) {
             xUrl = xUrl.replace('watch?v=', 'v/') + '?autoplay=1';

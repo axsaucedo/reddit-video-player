@@ -15,7 +15,7 @@ find build/assets -type f -name "*.js" -print0 | xargs -0 sed -i '' 's|app.html|
 find build/assets -type f -name "*.js" -print0 | xargs -0 sed -i '' 's|home.css|/reddit-video-crawler/home.css|g' 
 
 # Deploying to gh-pages
-git branch -D gh-pages
+git branch -D gh-pages || true
 git checkout -b gh-pages
 git add build --force
 git commit -m "deploy to gh-pages"
