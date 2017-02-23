@@ -6,7 +6,10 @@ import { Todo } from './todo.model';
     moduleId: module.id,
     selector: 'as-todolist',
     templateUrl: 'todolist.html',
-    providers: [VideosService]
+    providers: [VideosService],
+    host: {
+        '(window:keydown)': 'nextVideo($event); prevVideo($event); openComments($event)',
+    }
 })
 export class TodolistComponent {
     public videoState;
@@ -41,7 +44,11 @@ export class TodolistComponent {
         this.videoState.currVidIndex = 0;
     }
 
-    nextVideo() {
+    nextVideo(e) {
+        if (e && e.key !== 'ArrowDown' && e.key !== 'ArrowRight' && e.key !== 'n') {
+            return;
+        }
+
         if (this.videoState.currVidIndex >= this.list.length - 1) {
             return;
         }
@@ -49,12 +56,24 @@ export class TodolistComponent {
         this.videoState.currVideo = this.list[this.videoState.currVidIndex];
     }
 
-    prevVideo() {
+    prevVideo(e) {
+        if (e && e.key !== 'ArrowUp' && e.key !== 'ArrowLeft' && e.key !== 'p') {
+            return;
+        }
+
         if (this.videoState.currVidIndex <= 0) {
             return;
         }
         this.videoState.currVidIndex -= 1;
         this.videoState.currVideo = this.list[this.videoState.currVidIndex];
+    }
+
+    openComments(e) {
+        if (e && e.key !== 'c') {
+            return;
+        }
+
+        window.open(this.videoState.currVideo.permaLink);
     }
 
     getVideoBtnClass(i) {

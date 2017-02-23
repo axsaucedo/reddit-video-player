@@ -71,7 +71,7 @@
     "component-selector": [true, "element", ["as"], "kebab-case"],
     "use-input-property-decorator": true,
     "use-output-property-decorator": true,
-    "use-host-property-decorator": true,
+    "use-host-property-decorator": false,
     "no-attribute-parameter-decorator": true,
     "no-input-rename": true,
     "no-output-rename": true,
