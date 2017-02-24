@@ -44,7 +44,8 @@ export class TodolistComponent {
     }
 
     nextVideo(e) {
-        if (e && e.key !== 'ArrowDown' && e.key !== 'ArrowRight' && e.key !== 'n') {
+        let keys = ['ArrowDown', 'ArrowRight', 'n', 'j', 'l'];
+        if (e && keys.indexOf(e.key) < 0) {
             return;
         }
 
@@ -56,7 +57,8 @@ export class TodolistComponent {
     }
 
     prevVideo(e) {
-        if (e && e.key !== 'ArrowUp' && e.key !== 'ArrowLeft' && e.key !== 'p') {
+        let keys = ['ArrowLeft', 'ArrowUp', 'p', 'k', 'h'];
+        if (e && keys.indexOf(e.key) < 0) {
             return;
         }
 
