@@ -1,26 +1,26 @@
 import { Component } from '@angular/core';
-import { VideosService } from './todo.service';
-import { Todo } from './todo.model';
+import { VideosService } from './redditvideo.service';
+import { Video } from './video.model';
 
 @Component({
     moduleId: module.id,
-    selector: 'as-todolist',
-    templateUrl: 'todolist.html',
+    selector: 'as-redditvideo',
+    templateUrl: 'redditvideo.html',
     providers: [VideosService],
     host: {
         '(window:keydown)': 'nextVideo($event); prevVideo($event); openComments($event)',
     }
 })
-export class TodolistComponent {
+export class RedditVideoComponent {
     public videoState;
-    private list: Todo[];
+    private list: Video[];
     private showCompleted: Boolean;
 
     constructor(private videosService: VideosService) {
         this.showCompleted = true;
         this.videoState = {
             currVidIndex: 0,
-            currVideo: new Todo('Loading...', '', '')
+            currVideo: new Video('Loading...', '', '')
         };
         this.getVideos().then(() => {
             this.autoPlay();
@@ -31,7 +31,7 @@ export class TodolistComponent {
     getVideos(): Promise<any> {
         return new Promise<any>((resolve, reject) => {
             this.videosService.getAll()
-                .subscribe((videos: Todo[]) => {
+                .subscribe((videos: Video[]) => {
                     this.list = videos;
                     resolve();
                 });

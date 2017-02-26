@@ -1,11 +1,9 @@
 import { Routes, RouterModule } from '@angular/router';
 
-import { HomeRoutes } from './home/index';
-import { TodolistRoutes } from './todolist/index';
+import { RedditVideoRoutes } from './redditvideo/index';
 
 const appRoutes: Routes = [
-    ...HomeRoutes,
-    ...TodolistRoutes
+    ...RedditVideoRoutes
 ];
 
 export const appRoutingProviders: any[] = [

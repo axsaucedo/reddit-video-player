@@ -7,15 +7,15 @@
         <div class="col-sm-9" style="height:100%">
             <div class="row">
                 <div class="col-sm-6">
-                    <a  style="font-size: 50px !important;" 
-                        (click)=prevVideo() 
+                    <a  style="font-size: 50px !important;"
+                        (click)=prevVideo()
                         class="btn btn-danger">
                             <i class="fa fa-arrow-left"></i>
                         </a>
                 </div>
                 <div class="col-sm-6">
-                    <a  (click)=nextVideo()  
-                        class="btn btn-danger" 
+                    <a  (click)=nextVideo()
+                        class="btn btn-danger"
                         style="float: right ; font-size: 50px !important;">
                             <i class="fa fa-arrow-right"></i>
                     </a>
@@ -24,7 +24,7 @@
             <div class="container" class="col-xs-12" style="height:80%">
                 <div *ngIf="videoState.currVideo.url" style="height:100%">
                     <h4>{{videoState.currVideo.name}}</h4>
-                    <iframe id="videoFrame" frameborder="0" [src]="videoState.currVideo.url | asCompletedFilter" width="100%" height="100%"></iframe>
+                    <iframe id="videoFrame" frameborder="0" [src]="videoState.currVideo.url | asVideoFilter" width="100%" height="100%"></iframe>
                     <h4><a [href]="videoState.currVideo.permaLink">View comments in reddit</a></h4>
                 </div>
             </div>

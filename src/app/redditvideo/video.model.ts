@@ -1,11 +1,11 @@
-export class Todo {
+export class Video {
     public name: string;
     public url: string;
     public permaLink: string;
     public done: boolean;
 
-    static clone(todo: Todo): Todo {
-        return new Todo(todo.name, todo.url, todo.permaLink, todo.done);
+    static clone(todo: Video): Video {
+        return new Video(todo.name, todo.url, todo.permaLink, todo.done);
     }
 
     constructor(name: string, url: string, permaLink: string, done = false) {

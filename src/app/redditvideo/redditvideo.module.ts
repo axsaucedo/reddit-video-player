@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
-import { CompletedFilterPipe, TodolistComponent } from './index';
+import { VideoFilterPipe, RedditVideoComponent } from './index';
 import { HttpModule } from '@angular/http';
 
 @NgModule({
     declarations: [
-        CompletedFilterPipe,
-        TodolistComponent
+        VideoFilterPipe,
+        RedditVideoComponent
     ],
     imports: [
         FormsModule,
@@ -15,9 +15,9 @@ import { HttpModule } from '@angular/http';
         HttpModule
     ],
     exports: [
-        CompletedFilterPipe,
-        TodolistComponent
+        VideoFilterPipe,
+        RedditVideoComponent
     ]
 })
-export class TodolistModule {
+export class RedditVideoModule {
 }

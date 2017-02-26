@@ -1,13 +1,11 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 
-import { Todo } from './todo.model';
-
 @Pipe({
-    name: 'asCompletedFilter'
+    name: 'asVideoFilter'
 })
 
-export class CompletedFilterPipe implements PipeTransform {
+export class VideoFilterPipe implements PipeTransform {
     constructor(private sanitizer: DomSanitizer) {
 
     }
