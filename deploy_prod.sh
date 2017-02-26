@@ -1,18 +1,19 @@
 #!/bin/sh
 
 # stop on error
-set -e 
+set -e
 
 # Building code
 npm run-script build
 
 # Replacing all the necessary stuff
+# Basically because github pages uses Jekyll, we need to make sure we have prepended /reddit-video-crawler/ so it finds all files
 sed -i '' 's|<base href="/">|<base href="/reddit-video-crawler/">|g' build/index.html
-find build/assets -type f -name "*.js" -print0 | xargs -0 sed -i '' 's|home.html|/reddit-video-crawler/home.html|g' 
-find build/assets -type f -name "*.js" -print0 | xargs -0 sed -i '' 's|navbar.html|/reddit-video-crawler/navbar.html|g' 
-find build/assets -type f -name "*.js" -print0 | xargs -0 sed -i '' 's|todolist.html|/reddit-video-crawler/todolist.html|g' 
-find build/assets -type f -name "*.js" -print0 | xargs -0 sed -i '' 's|app.html|/reddit-video-crawler/app.html|g' 
-find build/assets -type f -name "*.js" -print0 | xargs -0 sed -i '' 's|home.css|/reddit-video-crawler/home.css|g' 
+find build/assets -type f -name "*.js" -print0 | xargs -0 sed -i '' 's|home.html|/reddit-video-crawler/home.html|g'
+find build/assets -type f -name "*.js" -print0 | xargs -0 sed -i '' 's|navbar.html|/reddit-video-crawler/navbar.html|g'
+find build/assets -type f -name "*.js" -print0 | xargs -0 sed -i '' 's|todolist.html|/reddit-video-crawler/todolist.html|g'
+find build/assets -type f -name "*.js" -print0 | xargs -0 sed -i '' 's|app.html|/reddit-video-crawler/app.html|g'
+find build/assets -type f -name "*.js" -print0 | xargs -0 sed -i '' 's|home.css|/reddit-video-crawler/home.css|g'
 
 # Deploying to gh-pages
 git branch -D gh-pages || true
