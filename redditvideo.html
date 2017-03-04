@@ -1,0 +1,58 @@
+<div class="panel panel-default" style="height: 70vh">
+  <div class="panel-heading hidden-xs">
+    <h3 class="panel-title"><i class="fa fa-reddit"></i> Reddit videos &nbsp;<span class="badge">{{list.length}}</span></h3>
+  </div>
+  <div class="panel-body">
+    <div class="row">
+        <div class="col-sm-9" style="height:100%">
+            <div class="row">
+                <div class="col-xs-2 col-sm-1">
+                    <a  style="font-size: 50px !important;"
+                        (click)=prevVideo()
+                        class="btn btn-danger">
+                            <i class="fa fa-arrow-left"></i>
+                        </a>
+                </div>
+                <div class="col-xs-8 col-sm-10" style="padding: 0 20px 0 20px">
+                    <h4>{{videoState.currVideo.name}}</h4>
+                </div>
+                <div class="col-xs-2 col-sm-1">
+                    <a  (click)=nextVideo()
+                        class="btn btn-danger"
+                        style="float: right ; font-size: 50px !important;">
+                            <i class="fa fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+            <br>
+            <div class="container" class="col-xs-12" style="height:80%">
+                <div *ngIf="videoState.currVideo.url" style="height:100%">
+                    <iframe id="videoFrame" frameborder="0" [src]="videoState.currVideo.url | asVideoFilter" width="100%" height="100%"></iframe>
+                    <hr>
+                    <h4><a [href]="videoState.currVideo.permaLink">View comments in reddit</a></h4>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-3 hidden-xs">
+            <ul class="list-group col-sm-12" style="height: 100%; overflow-y: scroll">
+                <li *ngFor="let todo of (list); let i=index" class="list-group-item col-sm-12">
+                    <a class="btn col-sm-12" [ngClass]="getVideoBtnClass(i)" style="margin-bottom:4px;white-space: normal;" (click)="loadVideo(i)">{{todo.name}}</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="hidden-xs">
+        <div class="col-sm-6">
+            <hr>
+            <h1>Use keybord shortcuts!</h1>
+        </div>
+        <div class="col-sm-6">
+            <hr>
+            <ul>
+                <li><b>Next video</b>: ArrowDown, ArrowRight, n, j, l</li>
+                <li><b>Previous video</b>: ArrowLeft, ArrowUp, p, k, h</li>
+                <li><b>Open Comments</b>: c</li>
+            </ul>
+        </div>
+    </div>
+</div>
