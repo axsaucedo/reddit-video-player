@@ -4,7 +4,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { APP_PROVIDERS } from './app.providers';
 import { AppComponent } from './app.component';
 import { appRoutingProviders, routing } from './app.routing';
-import { NavbarModule } from './shared';
 import { RedditVideoModule } from './redditvideo/redditvideo.module';
 
 @NgModule({
@@ -13,7 +12,6 @@ import { RedditVideoModule } from './redditvideo/redditvideo.module';
     ],
     imports: [
         BrowserModule,
-        NavbarModule,
         RedditVideoModule,
         routing,
     ],
