@@ -1,5 +1,5 @@
 export const MAIN = {
     APP: {
-        BRAND: 'Reddit Video Crawler'
+        BRAND: 'Reddit Video Player'
     }
 };
