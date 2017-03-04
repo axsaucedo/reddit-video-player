@@ -37,25 +37,25 @@ export class VideoFilterPipe implements PipeTransform {
 
             if (xUrl.indexOf('watch?v=') !== -1) {
 
-                xUrl = xUrl.replace('watch?v=', 'v/');
+                xUrl = xUrl.replace('watch?v=', 'embed/');
 
             } else if (xUrl.indexOf('%2Fwatch%3Fv%3D')) {
 
                 let allFound = /%2Fwatch%3Fv%3D(.+)%26/i.exec(xUrl);
                 let found = allFound[1];
-                xUrl = 'https://youtube.com/v/' + found;
+                xUrl = 'https://youtube.com/embed/' + found;
 
             }
         } else if (xUrl.indexOf('youtu.be') !== -1) {
 
             let urlParts = xUrl.split('/');
             let videoId = urlParts[urlParts.length - 1];
-            xUrl = 'https://youtube.com/v/' + videoId;
+            xUrl = 'https://youtube.com/embed/' + videoId;
 
         } else if (lowerUrl.indexOf('youtu.be') !== -1) {
 
             let urlParts = xUrl.split('/');
-            xUrl = 'https://youtube.com/v/' + urlParts[urlParts.length - 1] + '?autoplay=1';
+            xUrl = 'https://youtube.com/embed/' + urlParts[urlParts.length - 1] + '?autoplay=1';
 
         } else if (lowerUrl.indexOf('streamable') !== -1) {
 
